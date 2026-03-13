@@ -1,0 +1,221 @@
+/* --- VARIABLES DE MARCA --- */
+:root {
+    --stone-800: #292524;
+    --stone-600: #57534e;
+    --stone-200: #e7e5e4;
+    --amber-700: #b45309;
+    --amber-100: #fef3c7;
+    --bg-creme: #fdfbf7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-creme);
+    /* Fondo sutil que simula estanterías abstractas */
+    background-image: 
+        linear-gradient(90deg, rgba(41, 37, 36, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(41, 37, 36, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- LOGO SUPERIOR --- */
+.main-header {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--stone-800);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--amber-700);
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contendor__todo {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+}
+
+.caja__trasera {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(41, 37, 36, 0.08); /* Sutil piedra oscuro */
+    border-radius: 2rem;
+    border: 1px solid var(--stone-200);
+}
+
+.caja__trasera div {
+    margin: 100px 40px;
+    color: var(--stone-800);
+    transition: all 500ms;
+    text-align: center;
+}
+
+.caja__trasera h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.caja__trasera p {
+    font-size: 15px;
+    color: var(--stone-600);
+}
+
+.caja__trasera button {
+    padding: 10px 40px;
+    border: 1.5px solid var(--stone-800);
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--stone-800);
+    border-radius: 12px;
+    margin-top: 30px;
+    transition: all 300ms;
+}
+
+.caja__trasera button:hover {
+    background: var(--stone-800);
+    color: white;
+}
+
+/* --- FORMULARIOS --- */
+.contenedor__login-register {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    top: -185px;
+    left: 10px;
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.contenedor__login-register form {
+    width: 100%;
+    padding: 50px 40px;
+    background: white;
+    position: absolute;
+    border-radius: 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--amber-700); /* Detalle lomo de libro */
+}
+
+.contenedor__login-register form h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--stone-800);
+}
+
+/* Estilo grupos de input con iconos */
+.input-group {
+    position: relative;
+    margin-top: 15px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--stone-600);
+    font-size: 0.9rem;
+}
+
+.contenedor__login-register form input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid var(--stone-200);
+    background: var(--bg-creme);
+    font-size: 15px;
+    outline: none;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+/* Registro no tiene iconos en tu estructura, así que añadimos padding general */
+.formulario__register input {
+    padding: 12px 15px;
+    margin-top: 15px;
+}
+
+.contenedor__login-register form input:focus {
+    border-color: var(--amber-700);
+    background: white;
+    box-shadow: 0 0 0 4px var(--amber-100);
+}
+
+/* BOTÓN AURORA */
+.contenedor__login-register form button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 35px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: var(--stone-800);
+    color: white;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.contenedor__login-register form button:hover {
+    background: var(--amber-700);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(180, 83, 9, 0.3);
+}
+
+/* --- TRANSICIONES --- */
+.formulario__login { opacity: 1; display: block; }
+.formulario__register { display: none; }
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 850px) {
+    .main-header { padding: 20px 0; }
+    .logo { font-size: 1.8rem; }
+    
+    .caja__trasera {
+        max-width: 350px;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .caja__trasera div { margin: 20px 0; position: relative; }
+
+    .contenedor__login-register {
+        top: -10px;
+        left: 0 !important;
+        margin: auto;
+    }
+}
