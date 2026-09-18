@@ -60,3 +60,43 @@
           caja_trasera_login.style.opacity = "1";
     }
   }
+// --- LÓGICA MODAL ADMINISTRADOR ---
+const modalAdmin = document.getElementById("modalAdmin");
+const btnOpenAdmin = document.getElementById("btn-open-admin");
+const btnCloseAdmin = document.getElementById("btn-close-admin");
+
+const adminLoginForm = document.getElementById("admin-login-form");
+const adminRegForm = document.getElementById("admin-register-form");
+
+const toReg = document.getElementById("to-admin-register");
+const toLogin = document.getElementById("to-admin-login");
+
+// Abrir modal
+btnOpenAdmin.addEventListener("click", (e) => {
+    e.preventDefault();
+    modalAdmin.style.display = "flex";
+});
+
+// Cerrar modal
+btnCloseAdmin.addEventListener("click", () => {
+    modalAdmin.style.display = "none";
+});
+
+// Cerrar al hacer clic fuera del cuadro
+window.addEventListener("click", (e) => {
+    if (e.target == modalAdmin) {
+        modalAdmin.style.display = "none";
+    }
+});
+
+// Conmutar Login -> Registro Admin
+toReg.addEventListener("click", () => {
+    adminLoginForm.style.display = "none";
+    adminRegForm.style.display = "block";
+});
+
+// Conmutar Registro -> Login Admin
+toLogin.addEventListener("click", () => {
+    adminRegForm.style.display = "none";
+    adminLoginForm.style.display = "block";
+});

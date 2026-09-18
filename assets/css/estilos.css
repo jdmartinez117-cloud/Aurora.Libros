@@ -219,3 +219,113 @@ main {
         margin: auto;
     }
 }
+/* --- OVERLAY / MODAL ADMIN --- */
+.modal-overlay {
+    display: none; /* Se activa con JS */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(41, 37, 36, 0.4); /* Oscurecimiento leve */
+    backdrop-filter: blur(6px); /* Efecto desenfoque solicitado */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 400px; /* Misma anchura que el original */
+    border-radius: 2rem;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid var(--amber-700); /* Mimetismo: Lomo de libro */
+    animation: modalSlide 0.4s ease-out;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- CIERRE --- */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 24px;
+    color: var(--stone-600);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover { color: var(--amber-700); }
+
+/* --- MIMETISMO DE FORMULARIO --- */
+.admin-forms-wrapper h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--stone-800);
+}
+
+.admin-forms-wrapper input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 15px;
+    border: 1px solid var(--stone-200);
+    background: var(--bg-creme);
+    font-size: 15px;
+    border-radius: 12px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Mimetismo de botones */
+.admin-forms-wrapper button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 35px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: var(--stone-800);
+    color: white;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.admin-forms-wrapper button:hover {
+    background: var(--amber-700);
+    box-shadow: 0 5px 15px rgba(180, 83, 9, 0.3);
+}
+
+/* Enlaces internos de cambio */
+.change-form {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--stone-600);
+}
+
+.change-form span {
+    color: var(--amber-700);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Reutilización de iconos */
+.admin-forms-wrapper .input-group { position: relative; }
+.admin-forms-wrapper .input-group i {
+    position: absolute;
+    left: 15px;
+    top: 32px; /* Alineado con margin-top del input */
+    color: var(--stone-600);
+}
+.admin-forms-wrapper .input-group input { padding-left: 45px; }
