@@ -1,0 +1,493 @@
+/* --- VARIABLES DE MARCA --- */
+:root {
+    --stone-800: #292524;
+    --stone-600: #57534e;
+    --stone-200: #e7e5e4;
+    --amber-700: #b45309;
+    --amber-100: #fef3c7;
+    --bg-creme: #fdfbf7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-creme);
+    /* Fondo sutil que simula estanterías abstractas */
+    background-image: 
+        linear-gradient(90deg, rgba(41, 37, 36, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(41, 37, 36, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- LOGO SUPERIOR --- */
+.main-header {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--stone-800);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--amber-700);
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contendor__todo {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+}
+
+.caja__trasera {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(41, 37, 36, 0.08); /* Sutil piedra oscuro */
+    border-radius: 2rem;
+    border: 1px solid var(--stone-200);
+}
+
+.caja__trasera div {
+    margin: 100px 40px;
+    color: var(--stone-800);
+    transition: all 500ms;
+    text-align: center;
+}
+
+.caja__trasera h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.caja__trasera p {
+    font-size: 15px;
+    color: var(--stone-600);
+}
+
+.caja__trasera button {
+    padding: 10px 40px;
+    border: 1.5px solid var(--stone-800);
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--stone-800);
+    border-radius: 12px;
+    margin-top: 30px;
+    transition: all 300ms;
+}
+
+.caja__trasera button:hover {
+    background: var(--stone-800);
+    color: white;
+}
+
+/* --- FORMULARIOS --- */
+.contenedor__login-register {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    top: -185px;
+    left: 10px;
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.contenedor__login-register form {
+    width: 100%;
+    padding: 50px 40px;
+    background: white;
+    position: absolute;
+    border-radius: 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--amber-700); /* Detalle lomo de libro */
+}
+
+.contenedor__login-register form h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--stone-800);
+}
+
+/* Estilo grupos de input con iconos */
+.input-group {
+    position: relative;
+    margin-top: 15px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--stone-600);
+    font-size: 0.9rem;
+}
+
+.contenedor__login-register form input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid var(--stone-200);
+    background: var(--bg-creme);
+    font-size: 15px;
+    outline: none;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+/* Registro no tiene iconos en tu estructura, así que añadimos padding general */
+.formulario__register input {
+    padding: 12px 15px;
+    margin-top: 15px;
+}
+
+.contenedor__login-register form input:focus {
+    border-color: var(--amber-700);
+    background: white;
+    box-shadow: 0 0 0 4px var(--amber-100);
+}
+
+/* BOTÓN AURORA */
+.contenedor__login-register form button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 35px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: var(--stone-800);
+    color: white;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.contenedor__login-register form button:hover {
+    background: var(--amber-700);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(180, 83, 9, 0.3);
+}
+
+/* --- TRANSICIONES --- */
+.formulario__login { opacity: 1; display: block; }
+.formulario__register { display: none; }
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 850px) {
+    .main-header { padding: 20px 0; }
+    .logo { font-size: 1.8rem; }
+    
+    .caja__trasera {
+        max-width: 350px;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .caja__trasera div { margin: 20px 0; position: relative; }
+
+    .contenedor__login-register {
+        top: -10px;
+        left: 0 !important;
+        margin: auto;
+    }
+}
+/* --- OVERLAY / MODAL ADMIN --- */
+.modal-overlay {
+    display: none; /* Se activa con JS */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(41, 37, 36, 0.4); /* Oscurecimiento leve */
+    backdrop-filter: blur(6px); /* Efecto desenfoque solicitado */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 400px; /* Misma anchura que el original */
+    border-radius: 2rem;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid var(--amber-700); /* Mimetismo: Lomo de libro */
+    animation: modalSlide 0.4s ease-out;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- CIERRE --- */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 24px;
+    color: var(--stone-600);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover { color: var(--amber-700); }
+
+/* --- MIMETISMO DE FORMULARIO --- */
+.admin-forms-wrapper h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--stone-800);
+}
+
+.admin-forms-wrapper input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 15px;
+    border: 1px solid var(--stone-200);
+    background: var(--bg-creme);
+    font-size: 15px;
+    border-radius: 12px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Mimetismo de botones */
+.admin-forms-wrapper button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 35px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: var(--stone-800);
+    color: white;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.admin-forms-wrapper button:hover {
+    background: var(--amber-700);
+    box-shadow: 0 5px 15px rgba(180, 83, 9, 0.3);
+}
+
+/* Enlaces internos de cambio */
+.change-form {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--stone-600);
+}
+
+.change-form span {
+    color: var(--amber-700);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Reutilización de iconos */
+.admin-forms-wrapper .input-group { position: relative; }
+.admin-forms-wrapper .input-group i {
+    position: absolute;
+    left: 15px;
+    top: 32px; /* Alineado con margin-top del input */
+    color: var(--stone-600);
+}
+.admin-forms-wrapper .input-group input { padding-left: 45px; }
+/* =========================================================================
+   MODAL DE ACUERDO DE DATOS PERSONALES (REGISTRO)
+   ========================================================================= */
+.modal-terminos-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(28, 25, 23, 0.85); /* Fondo oscuro con desenfoque */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    box-sizing: border-box;
+}
+
+.modal-terminos-card {
+    background: #ffffff;
+    max-width: 580px;
+    width: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: popInTerminos 0.25s ease-out;
+}
+
+@keyframes popInTerminos {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-terminos-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 1.75rem;
+    background: #fbfaf8;
+    border-bottom: 1px solid #f0eee9;
+}
+
+.modal-terminos-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #fef3c7;
+    color: #b45309;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.modal-terminos-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1c1917;
+    font-family: 'Playfair Display', serif;
+}
+
+.modal-terminos-header p {
+    margin: 0.15rem 0 0 0;
+    font-size: 0.8rem;
+    color: #78716c;
+}
+
+.modal-terminos-body {
+    padding: 1.5rem 1.75rem;
+    max-height: 280px;
+    overflow-y: auto;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #44403c;
+    border-bottom: 1px solid #f0eee9;
+}
+
+.modal-terminos-body h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #78350f;
+    margin: 1rem 0 0.4rem 0;
+}
+
+.modal-terminos-body p {
+    margin-bottom: 0.8rem;
+}
+
+.modal-terminos-body ul {
+    margin: 0 0 0.8rem 1.25rem;
+    padding: 0;
+}
+
+.modal-terminos-body li {
+    margin-bottom: 0.4rem;
+}
+
+.terminos-aviso-destacado {
+    background: #fffbeb;
+    border-left: 4px solid #d97706;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #92400e;
+    margin-top: 1rem;
+}
+
+.modal-terminos-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.25rem 1.75rem;
+    background: #fbfaf8;
+}
+
+.btn-terminos-cancelar {
+    background: #e7e5e4;
+    color: #57534e;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-terminos-cancelar:hover {
+    background: #d6d3d1;
+    color: #1c1917;
+}
+
+.btn-terminos-aceptar {
+    background: #78350f;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(120, 53, 15, 0.25);
+}
+
+.btn-terminos-aceptar:hover {
+    background: #b45309;
+    transform: translateY(-1px);
+}
