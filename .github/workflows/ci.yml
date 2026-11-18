@@ -1,0 +1,42 @@
+name: Aurora.Libros CI Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: login_register_db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli, pdo, pdo_mysql, mbstring, curl
+
+      - name: Cargar esquema de base de datos
+        run: |
+          mysql -h 127.0.0.1 -u root login_register_db < bd_mysql/login_register_db.sql
+          mysql -h 127.0.0.1 -u root login_register_db < bd_mysql/bd_tienda_online.sql
+
+      - name: Iniciar servidor PHP integrado para pruebas
+        run: php -S 127.0.0.1:8000 &
+
+      - name: Ejecutar Suite de Pruebas (Unitarias, Integración y Sistema)
+        run: php tests/run_tests.php
