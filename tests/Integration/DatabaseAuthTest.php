@@ -17,9 +17,14 @@ class DatabaseAuthTest {
         );
 
         // Caso 2: Conexión mediante PDO
+        $db_host = getenv('DB_HOST') ?: 'localhost';
+        $db_user = getenv('DB_USER') ?: 'root';
+        $db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+        $db_name = getenv('DB_NAME') ?: 'login_register_db';
+
         $pdoOk = false;
         try {
-            $pdo = new PDO("mysql:host=localhost;dbname=login_register_db;charset=utf8mb4", "root", "");
+            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdoOk = true;
         } catch (Exception $e) {

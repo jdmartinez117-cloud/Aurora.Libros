@@ -3,13 +3,16 @@
 
 class ApiSystemTest {
 
-    private static $baseUrl = 'http://localhost/Aurora.Libros';
+    private static function url($path = '') {
+        $base = rtrim(getenv('TEST_BASE_URL') ?: 'http://localhost/Aurora.Libros', '/');
+        return $base . $path;
+    }
 
     public static function run(&$passed, &$failed) {
         echo "\n\033[1;34m[3. PRUEBAS DEL SISTEMA / APIS - Peticiones HTTP, Reportes y Catálogo]\033[0m\n";
 
         // Caso 1: Carga del Portal Principal (index.php)
-        $respIndex = self::httpGet(self::$baseUrl . '/index.php');
+        $respIndex = self::httpGet(self::url('/index.php'));
         self::assert(
             $respIndex['code'] === 200 && strpos($respIndex['body'], 'AURORA') !== false,
             "Sistema Web: index.php responde HTTP 200 y carga la estructura de la aplicación",
@@ -24,7 +27,7 @@ class ApiSystemTest {
         );
 
         // Caso 2: Endpoint del Panel Administrativo (api_dashboard.php)
-        $respDash = self::httpGet(self::$baseUrl . '/php/api_dashboard.php');
+        $respDash = self::httpGet(self::url('/php/api_dashboard.php'));
         $dashJson = json_decode($respDash['body'], true);
 
         self::assert(
@@ -48,7 +51,7 @@ class ApiSystemTest {
             'g-recaptcha-response' => ''
         ];
         $respReg = self::httpPost(
-            self::$baseUrl . '/php/registro_usuario_be.php',
+            self::url('/php/registro_usuario_be.php'),
             $postData,
             ['X-Requested-With: fetch']
         );
@@ -61,7 +64,7 @@ class ApiSystemTest {
         );
 
         // Caso 4: Disponibilidad del motor de idiomas
-        $respLang = self::httpGet(self::$baseUrl . '/assets/js/idiomas.js');
+        $respLang = self::httpGet(self::url('/assets/js/idiomas.js'));
         self::assert(
             $respLang['code'] === 200 && strpos($respLang['body'], 'aurora_lang') !== false,
             "Recursos del Sistema: /assets/js/idiomas.js disponible y sirve el diccionario bilingüe",
@@ -69,7 +72,7 @@ class ApiSystemTest {
         );
 
         // Caso 5: Generación y exportación de reportes en Excel (.xlsx)
-        $respExcel = self::httpGet(self::$baseUrl . '/php/reporte_excel_be.php?tipo=libros');
+        $respExcel = self::httpGet(self::url('/php/reporte_excel_be.php?tipo=libros'));
         $isExcel = ($respExcel['code'] === 200 && strlen($respExcel['body']) > 1000 &&
                     strpos($respExcel['body'], 'PK') === 0);
         self::assert(
@@ -79,7 +82,7 @@ class ApiSystemTest {
         );
 
         // Caso 6: Generación y exportación de reportes en PDF (mPDF)
-        $respPdf = self::httpGet(self::$baseUrl . '/php/reporte_pdf_be.php?tipo=libros');
+        $respPdf = self::httpGet(self::url('/php/reporte_pdf_be.php?tipo=libros'));
         $isPdf = ($respPdf['code'] === 200 && strpos($respPdf['body'], '%PDF-') === 0);
         self::assert(
             $isPdf,
@@ -88,7 +91,7 @@ class ApiSystemTest {
         );
 
         // Caso 7: API del Catálogo de la Tienda (api.php?action=get_data)
-        $respCatalog = self::httpGet(self::$baseUrl . '/php/api.php?action=get_data');
+        $respCatalog = self::httpGet(self::url('/php/api.php?action=get_data'));
         $catalogJson = json_decode($respCatalog['body'], true);
         self::assert(
             $respCatalog['code'] === 200 && isset($catalogJson['books']) && count($catalogJson['books']) > 0,
@@ -97,7 +100,7 @@ class ApiSystemTest {
         );
 
         // Caso 8: Generador de Copias de Seguridad de la Base de Datos
-        $respBackup = self::httpGet(self::$baseUrl . '/php/backup_bd.php');
+        $respBackup = self::httpGet(self::url('/php/backup_bd.php'));
         $isSqlBackup = ($respBackup['code'] === 200 && strpos($respBackup['body'], 'CREATE TABLE') !== false);
         self::assert(
             $isSqlBackup,
@@ -106,7 +109,7 @@ class ApiSystemTest {
         );
 
         // Caso 9: API de Restauración de Base de Datos (Validación de archivo SQL)
-        $respRestore = self::httpPost(self::$baseUrl . '/php/restaurar_bd.php', []);
+        $respRestore = self::httpPost(self::url('/php/restaurar_bd.php'), []);
         $restoreJson = json_decode($respRestore['body'], true);
         self::assert(
             $respRestore['code'] === 200 && is_array($restoreJson) && ($restoreJson['status'] ?? '') === 'error',
@@ -115,7 +118,7 @@ class ApiSystemTest {
         );
 
         // Caso 10: Endpoint de Verificación de Sesión Única
-        $respToken = self::httpGet(self::$baseUrl . '/php/verificar_token_be.php');
+        $respToken = self::httpGet(self::url('/php/verificar_token_be.php'));
         $tokenJson = json_decode($respToken['body'], true);
         self::assert(
             $respToken['code'] === 200 && is_array($tokenJson) && ($tokenJson['valido'] ?? null) === false,

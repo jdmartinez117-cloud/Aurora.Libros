@@ -1,6 +1,11 @@
 <?php
 
-$conexion = mysqli_connect("localhost", "root", "", "login_register_db");
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+$db_name = getenv('DB_NAME') ?: 'login_register_db';
+
+$conexion = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 /*/
 if ($conexion){

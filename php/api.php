@@ -2,8 +2,13 @@
 session_start();
 header('Content-Type: application/json');
 
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+$db_name = getenv('DB_NAME') ?: 'login_register_db';
+
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=login_register_db", "root", "");
+    $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
